@@ -6,8 +6,13 @@
 
 package EJB;
 
+import Entidad.Usuario;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -15,8 +20,30 @@ import javax.ejb.LocalBean;
  */
 @Stateless
 @LocalBean
-public class UsuarioEJB {
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+public class UsuarioEJB 
+{
+    @PersistenceContext(unitName="ProyectoFinal-ejbPU")
+    private EntityManager em;
+    public int autenticarUsuario(String username,String password)
+    {
+        try
+        {
+            Query query=em.createQuery("SELECT u FROM Usuario u WHERE u.username='"+username+"' AND u.password='"+password+"'");
+            Usuario u=new Usuario();
+            u=(Usuario) query.getSingleResult();
+            if(u.getProfile().equals("Administrador"))
+            {
+                return 2;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        catch(Exception ex)
+        {
+            return 0;
+        }
+        
+    }
 }
