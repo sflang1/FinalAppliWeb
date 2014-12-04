@@ -5,12 +5,18 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
-        <title>TODO supply a title</title>
+        <title>Error en la autenticación</title>
         <meta name="viewport" content="width=device-width"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        <h:outputText value="#{usuarioMB.mensaje}"/>
+        <h:form>
+            <h:commandLink action="#{usuarioMB.logout()}">
+                Volver al Inicio
+            </h:commandLink>
+        </h:form>
     </body>
 </html>

@@ -42,6 +42,16 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findByProfile", query = "SELECT u FROM Usuario u WHERE u.profile = :profile"),
     @NamedQuery(name = "Usuario.findByActive", query = "SELECT u FROM Usuario u WHERE u.active = :active")})
 public class Usuario implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
+    @Column(name = "pregunta")
+    private String pregunta;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 150)
+    @Column(name = "respuesta")
+    private String respuesta;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -231,6 +241,22 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "Entidad.Usuario[ iduser=" + iduser + " ]";
+    }
+
+    public String getPregunta() {
+        return pregunta;
+    }
+
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
     
 }

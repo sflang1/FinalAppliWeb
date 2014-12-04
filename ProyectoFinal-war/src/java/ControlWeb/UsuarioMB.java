@@ -28,6 +28,10 @@ public class UsuarioMB {
     private List<Usuario> usuarios;
     private String username;
     private String password;
+    private String pregunta;
+    private String respuesta;
+    private String contrasenanueva;
+    private String mensaje;
     public UsuarioMB() 
     {
         
@@ -35,21 +39,85 @@ public class UsuarioMB {
     public String autenticar()
     {
         String redir="";
+        System.out.println(uejb.autenticarUsuario(username, password));
         if(uejb.autenticarUsuario(username, password)==2)
         {
             redir="inicio.xhtml";
         }
-        if(uejb.autenticarUsuario(username, password)==1)
+        else
         {
-            redir="inicioEmpleado.xhtml";
+            if(uejb.autenticarUsuario(username, password)==1)
+            {
+                redir="inicioEmpleado.xhtml";
+            }
+            else
+            {
+                mensaje="La autenticación no fue exitosa";
+                redir="error.xhtml";
+            }
+        }
+        return redir;
+    }
+    public String mostrarRecuperarContrasena()
+    {
+        username="";
+        return "recuperarContrasena.xhtml";
+    }
+    public String mostrarPregunta()
+    {
+        Usuario u=new Usuario();
+        u=uejb.obtenerUsuarioporUsername(username);
+        String redir="";
+        if(!u.equals(null))
+        {
+            pregunta=u.getPregunta();
+            usuario=u;
+            respuesta="";
+            mensaje="";
+            redir="pregunta.xhtml";
         }
         else
         {
+            mensaje="No estás en la base de datos";
             redir="error.xhtml";
         }
         return redir;
     }
-    
+    public String recuperarContrasena()
+    {
+        String redir="";
+        if(respuesta.equals(usuario.getRespuesta()))
+        {
+            redir="nuevacontrasena.xhtml";
+            System.out.println("El mensaje es: "+mensaje);
+        }
+        else
+        {
+            redir="pregunta.xhtml";
+            mensaje="Has respondido incorrectamente la pregunta.";
+            System.out.println("Responde incorrectamente. El mensaje es: "+mensaje+".");
+                    
+        }
+        System.out.println(""+ "La redirección es: "+redir);
+        return redir;
+    }
+    public String cambiarContrasena()
+    {
+        if(uejb.cambiarContrasena(usuario, contrasenanueva))
+        {
+            mensaje="Contraseña cambiada";
+        }
+        else
+        {
+            mensaje="Contraseña no cambiada";
+        }
+        return "error.xhtml";
+    }
+    public String logout()
+    {
+        sesionUsuario=new Usuario();
+        return "index.xhtml";
+    }
     //----------------GETTERS y SETTERS---------------
     public Usuario getUsuario() {
         return usuario;
@@ -90,5 +158,39 @@ public class UsuarioMB {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getPregunta() {
+        return pregunta;
+    }
+
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
     
+    
+
+    public String getContrasenanueva() {
+        return contrasenanueva;
+    }
+
+    public void setContrasenanueva(String contrasenanueva) {
+        this.contrasenanueva = contrasenanueva;
+    }
+
+    //---------------FIN GETTERS Y SETTERS--------
 }

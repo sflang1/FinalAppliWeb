@@ -7,40 +7,39 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      >
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>TODO supply a title</title>
+        <title>Recuperación de la contraseña</title>
         <meta name="viewport" content="width=device-width"/>
     </h:head>
     <body>
-        <div>TODO write content</div>
+        Hola, <h:outputText value="#{usuarioMB.usuario.name1} #{usuarioMB.usuario.lastname1}"/>. Contesta tu pregunta de seguridad
+        para recuperar la contraseña de tu cuenta.
         <h:form>
-            Formulario de autenticación <br/>
             <table>
                 <tr>
                     <td>
-                        Nombre de usuario:
+                        Pregunta:
                     </td>
                     <td>
-                        <p:inputText title="Ingresa tu nombre de usuario" value="#{usuarioMB.username}"/>
+                        <h:outputText value="#{usuarioMB.pregunta}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Contraseña:
+                        Respuesta:
                     </td>
                     <td>
-                        <p:password title="Ingresa tu nombre de usuario" value="#{usuarioMB.password}"/>
+                        <p:inputText value="#{usuarioMB.respuesta}"/>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <p:commandButton action="#{usuarioMB.autenticar()}" value="Enviar"/>
+                        <p:commandButton value="Enviar" action="#{usuarioMB.recuperarContrasena()}"/>
                     </td>
-                </tr>                
+                </tr>
             </table>
-            ¿Olvidaste tu contraseña? Recupérala <h:commandLink action="#{usuarioMB.mostrarRecuperarContrasena()}">aquí</h:commandLink>
+            <h:outputText value="Mensaje: #{usuarioMB.mensaje}"/>
         </h:form>
     </body>
 </html>

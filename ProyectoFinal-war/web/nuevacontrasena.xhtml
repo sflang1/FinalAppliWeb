@@ -7,40 +7,37 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      >
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width"/>
+        <script type="text/javascript" src="nuevacontrasena.js"></script>
     </h:head>
     <body>
-        <div>TODO write content</div>
-        <h:form>
-            Formulario de autenticación <br/>
+        <h:form prependId="false">
             <table>
                 <tr>
                     <td>
-                        Nombre de usuario:
+                        Nueva contraseña:
                     </td>
                     <td>
-                        <p:inputText title="Ingresa tu nombre de usuario" value="#{usuarioMB.username}"/>
+                        <p:password value="#{usuarioMB.contrasenanueva}" id="cont1" required="true"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Contraseña:
+                        Confirmar contraseña:
                     </td>
                     <td>
-                        <p:password title="Ingresa tu nombre de usuario" value="#{usuarioMB.password}"/>
+                        <p:password id="cont2" required="true"/>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <p:commandButton action="#{usuarioMB.autenticar()}" value="Enviar"/>
+                        <p:commandButton onclick="return validar()" action="#{usuarioMB.cambiarContrasena()}" value="Enviar"/>
                     </td>
-                </tr>                
+                </tr>
             </table>
-            ¿Olvidaste tu contraseña? Recupérala <h:commandLink action="#{usuarioMB.mostrarRecuperarContrasena()}">aquí</h:commandLink>
         </h:form>
     </body>
 </html>
