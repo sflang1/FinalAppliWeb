@@ -42,12 +42,14 @@ public class UsuarioMB {
         System.out.println(uejb.autenticarUsuario(username, password));
         if(uejb.autenticarUsuario(username, password)==2)
         {
+            sesionUsuario=uejb.obtenerUsuarioporUsername(username);
             redir="inicio.xhtml";
         }
         else
         {
             if(uejb.autenticarUsuario(username, password)==1)
             {
+                sesionUsuario=uejb.obtenerUsuarioporUsername(username);
                 redir="inicioEmpleado.xhtml";
             }
             else

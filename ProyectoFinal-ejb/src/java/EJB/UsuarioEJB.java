@@ -7,6 +7,7 @@
 package EJB;
 
 import Entidad.Usuario;
+import Entidad.Varios;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -28,31 +29,41 @@ public class UsuarioEJB
     {
         try
         {
-            System.out.println("SELECT sha1('"+password+"') FROM Usuario");
-            Query query=em.createNativeQuery("SELECT sha1('"+password+"') FROM Usuario");
-            System.out.println(query.getFirstResult());
+            int a=0;
+            Varios v=new Varios();
             Usuario u=new Usuario();
-//            u.setIduser((int) query.getParameterValue("iduser"));
-//            u.setName1((String) query.getParameterValue("name1"));
-//            u.setName2((String) query.getParameterValue("name2"));
-//            u.setLastname1((String) query.getParameterValue("lastname1"));
-//            u.setLastname2((String) query.getParameterValue("lastname2"));
-//            u.setDocid((String) query.getParameterValue("docid"));
-//            u.setUsername((String) query.getParameterValue("username"));
-//            u.setPassword((String) query.getParameterValue("password"));
-//            u.setEmail((String) query.getParameterValue("email"));
-//            u.setPhoto((String) query.getParameterValue("photo"));
-//            u.setProfile((String) query.getParameterValue("profile"));
-//            u.setActive((boolean) query.getParameterValue("active"));
-//            u.setPregunta((String) query.getParameterValue("pregunta"));
-//            u.setRespuesta((String) query.getParameterValue("respuesta"));
-            if(u.getProfile().equals("Administrador"))
+            String sha1="";
+            Query query=em.createNativeQuery("UPDATE Varios SET valor=sha1('"+password+"') WHERE descripcion='sha1'");
+            a=query.executeUpdate();
+            if(a>0)
             {
-                return 2;
+                Query query2=em.createQuery("SELECT v FROM Varios v WHERE v.descripcion='sha1'");
+                v=(Varios) query2.getSingleResult();
+                sha1=v.getValor();
+                System.out.println(sha1);
+                Query query3=em.createQuery("SELECT u FROM Usuario u WHERE u.username='"+username+"'");
+                u=(Usuario) query3.getSingleResult();
+                if(sha1.equals(u.getPassword()))
+                {
+                    if(u.getProfile().equals("Administrador"))
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    System.out.println("Autenticación incorrecta");
+                    return 0;
+                }
             }
             else
             {
-                return 1;
+                System.out.println("No se pudo obtener el sha1");
+                return 0;
             }
         }
         catch(Exception ex)

@@ -12,7 +12,10 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width"/>
     </head>
     <body>
-        Administrador autenticado exitosamente.
+        Bienvenid@, <h:outputText value="#{usuarioMB.sesionUsuario.name1} 
+                                  #{usuarioMB.sesionUsuario.name2} 
+                                  #{usuarioMB.sesionUsuario.lastname1} 
+                                  #{usuarioMB.sesionUsuario.lastname2}"/>
         <h:form prependId="false">
         <table>
             <tr>
