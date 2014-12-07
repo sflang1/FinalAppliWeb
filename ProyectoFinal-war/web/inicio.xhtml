@@ -6,26 +6,39 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width"/>
-    </head>
+    </h:head>
     <body>
         Bienvenid@, <h:outputText value="#{usuarioMB.sesionUsuario.name1} 
                                   #{usuarioMB.sesionUsuario.name2} 
                                   #{usuarioMB.sesionUsuario.lastname1} 
                                   #{usuarioMB.sesionUsuario.lastname2}"/>
-        <h:form prependId="false">
-        <table>
-            <tr>
-                <td>
-                    <h:commandLink>
-                        Listar productos
-                    </h:commandLink>
-                </td>
-            </tr>
-        </table>
-        </h:form>
+        <div id="sesion">
+            <h:form>
+                ¿No eres tú? Inicia sesión con otra cuenta: <h:commandLink action="#{usuarioMB.logout()}">Cerrar sesión</h:commandLink>
+            </h:form>
+        </div>
+        <div id="menu">
+            <h:form>
+                <table>
+                    <tr>
+                        <td>
+                            <h:commandLink action="#{usuarioMB.mostrarListarUsuarios()}">Listar Usuarios</h:commandLink>
+                        </td>
+                        <td>
+                            <h:commandLink action="#{usuarioMB.mostrarAgregarUsuario()}">Agregar Usuarios </h:commandLink>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </div>
+        <div id="pie">
+            Página diseñada y creada por: Sebastián Felipe Landínez- Diana Marcela Samboní
+        </div>
+        <script type="text/javascript" src="inicio.js"></script>
     </body>
 </html>

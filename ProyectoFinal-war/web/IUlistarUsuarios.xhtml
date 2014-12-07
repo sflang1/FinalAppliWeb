@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <body>
+        <div id="sesion">
+        Bienvenid@, <h:outputText value="#{usuarioMB.sesionUsuario.name1} 
+                                  #{usuarioMB.sesionUsuario.name2} 
+                                  #{usuarioMB.sesionUsuario.lastname1} 
+                                  #{usuarioMB.sesionUsuario.lastname2}"/>
+        
+            <h:form>
+                ¿No eres tú? Inicia sesión con otra cuenta: <h:commandLink action="#{usuarioMB.logout()}">Cerrar sesión</h:commandLink>
+            </h:form>
+        </div>
+        <div id="menu">
+            <table>
+                <tr>
+                    <td>
+                        <a onclick="redireccionaru('listar')">
+                            Listar usuarios
+                        </a>
+                    </td>
+                    <td>
+                        <a onclick="redireccionaru('consultar')">
+                            Consultar usuarios
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="contenido">
+            Lista de usuarios del sistema:
+            <p:dataTable paginator="true" value="#{usuarioMB.usuarios}" var="users">
+                <p:column>
+                    <f:facet name="header">
+                        Nombre
+                    </f:facet>
+                    <h:outputText value="#{users.name1} #{users.name2}"/>
+               </p:column>
+                 <p:column>
+                    <f:facet name="header">
+                        Apellido
+                    </f:facet>
+                    <h:outputText value="#{users.lastname1} #{users.lastname2}"/>
+               </p:column>
+                 <p:column>
+                    <f:facet name="header">
+                        Documento de identidad
+                    </f:facet>
+                     <h:outputText value="#{users.docid}"/>
+               </p:column>
+            </p:dataTable>
+            <h:form><h:commandLink action="#{usuarioMB.mostrarInicio()}">Volver a la página anterior</h:commandLink></h:form>
+        </div>
+        
+        <div id="pie">
+            Página diseñada y creada por: Sebastián Felipe Landínez- Diana Marcela Samboní
+        </div>
+    </body>
+</html>

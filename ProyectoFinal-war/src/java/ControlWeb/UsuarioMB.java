@@ -39,7 +39,6 @@ public class UsuarioMB {
     public String autenticar()
     {
         String redir="";
-        System.out.println(uejb.autenticarUsuario(username, password));
         if(uejb.autenticarUsuario(username, password)==2)
         {
             sesionUsuario=uejb.obtenerUsuarioporUsername(username);
@@ -120,6 +119,38 @@ public class UsuarioMB {
         sesionUsuario=new Usuario();
         return "index.xhtml";
     }
+    public String mostrarListarUsuarios()
+    {
+        usuarios=uejb.obtenerUsuarios();
+        return "IUlistarUsuarios.xhtml";
+    }
+    public String mostrarInicio()
+    {
+        return "inicio.xhtml";
+    }
+    public String mostrarAgregarUsuario()
+    {
+        mensaje="";
+        usuario=new Usuario();
+        return "IUagregarUsuario.xhtml";
+    }
+    public String agregarUsuario()
+    {
+        String redir="";
+        String pr=usuario.getPregunta();
+        usuario.setPregunta(devolverPregunta(pr));
+        usuario.setActive(true);
+        if(uejb.crearUsuario(usuario).equals("success"))
+        {
+            redir="inicio.xhtml";
+        }
+        else
+        {
+            mensaje=uejb.crearUsuario(usuario);
+            redir="IUagregarUsuario.xhtml";
+        }
+        return redir;
+    }
     //----------------GETTERS y SETTERS---------------
     public Usuario getUsuario() {
         return usuario;
@@ -193,6 +224,21 @@ public class UsuarioMB {
     public void setContrasenanueva(String contrasenanueva) {
         this.contrasenanueva = contrasenanueva;
     }
-
+    public String devolverPregunta(String a)
+    {
+        int b=Integer.parseInt(a);
+        switch(b)
+        {
+            case 1:
+                return "¿Cómo se llamaba tu primer(a) profesor(a)?";
+            case 2:
+                return "¿Cómo se llamaba tu mascota?";
+            case 3:
+                return "¿En qué colegio te graduaste?";
+            case 4:
+                return "¿Cómo se llamaba el primer barrio en el que viviste?";
+        }
+        return "";
+    }
     //---------------FIN GETTERS Y SETTERS--------
 }

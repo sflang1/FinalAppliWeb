@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <body>
+        <div id="sesion">
+        Bienvenid@, <h:outputText value="#{usuarioMB.sesionUsuario.name1} 
+                                  #{usuarioMB.sesionUsuario.name2} 
+                                  #{usuarioMB.sesionUsuario.lastname1} 
+                                  #{usuarioMB.sesionUsuario.lastname2}"/>
+        
+            <h:form>
+                ¿No eres tú? Inicia sesión con otra cuenta: <h:commandLink action="#{usuarioMB.logout()}">Cerrar sesión</h:commandLink>
+            </h:form>
+        </div>
+        <div id="menu">
+            <table>
+                <tr>
+                    <td>
+                        <a onclick="redireccionaru('listar')">
+                            Listar usuarios
+                        </a>
+                    </td>
+                    <td>
+                        <a onclick="redireccionaru('consultar')">
+                            Consultar usuarios
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="contenido">
+            Formulario para agregar usuario. Los campos con * son obligatorios:
+            <h:form prependId="false">
+                <table>
+                    <tr>
+                        <td>
+                            Nombre 1(*):
+                        </td>
+                        <td>
+                            <p:inputText id="name1" value="#{usuarioMB.usuario.name1}" required="true"
+                                         requiredMessage="Campo obligatorio"/>
+                        </td>
+                        <td>
+                            <p:message for="name1"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nombre 2:
+                        </td>
+                        <td>
+                            <p:inputText value="#{usuarioMB.usuario.name2}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Apellido 1(*):
+                        </td>
+                        <td>
+                            <p:inputText id="lastname1" value="#{usuarioMB.usuario.lastname1}" required="true"
+                                         requiredMessage="Campo obligatorio"/>
+                        </td>
+                        <td>
+                            <p:message for="lastname1"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Apellido 2:
+                        </td>
+                        <td>
+                            <p:inputText value="#{usuarioMB.usuario.lastname2}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Documento de identidad(*):
+                        </td>
+                        <td>
+                            <p:inputText id="docid" value="#{usuarioMB.usuario.docid}" required="true"
+                                         requiredMessage="Campo obligatorio"/>
+                        </td>
+                        <td>
+                            <p:message for="docid"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nombre de usuario(*):
+                        </td>
+                        <td>
+                            <p:inputText id="username" value="#{usuarioMB.usuario.username}" required="true"
+                                         requiredMessage="Campo obligatorio"/>
+                        </td>
+                        <td>
+                            <p:message for="username"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Contraseña(*):
+                        </td>
+                        <td>
+                            <p:password value="#{usuarioMB.usuario.password}" id="password"/>
+                        </td>
+                        <td>
+                            <p:message for="password"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Correo Electrónico(*):
+                        </td>
+                        <td>
+                            <p:inputText value="#{usuarioMB.usuario.email}" id="email"
+                                         validatorMessage="Un email debe contener el signo @">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>                
+                            </p:inputText>
+                        </td>
+                        <td>
+                            <p:message for="email"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Perfil:
+                        </td>
+                        <td>
+                            <p:selectOneMenu value="#{usuarioMB.usuario.profile}">
+                                <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
+                                <f:selectItem itemLabel="Empleado" itemValue="Empleado"/>
+                            </p:selectOneMenu>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Pregunta de seguridad:
+                        </td>
+                        <td>
+                            <p:selectOneMenu value="#{usuarioMB.usuario.pregunta}">
+                                <f:selectItem itemLabel="¿Cómo se llamaba tu primer(a) profesor(a)?" itemValue="1"/>
+                                <f:selectItem itemLabel="¿Cómo se llamaba tu mascota?" itemValue="2"/>
+                                <f:selectItem itemLabel="¿En qué colegio te graduaste?" itemValue="3"/>
+                                <f:selectItem itemLabel="¿Cómo se llamaba el primer barrio en el que viviste?" itemValue="4"/>
+                            </p:selectOneMenu>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Respuesta (¡recuerda cómo la escribiste!)(*):
+                        </td>
+                        <td>
+                            <p:inputText id="respuesta" value="#{usuarioMB.usuario.respuesta}" 
+                                         required="true" requiredMessage="Campo obligatorio"/>
+                        </td>
+                        <td>
+                            <p:message for="respuesta"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <p:commandButton value="Registrar Usuario" action="#{usuarioMB.agregarUsuario()}" ajax="false" validateClient="true" icon="ui-icon-check"/>
+                        </td>
+                    </tr>
+                </table>
+                <h:outputText value="#{usuarioMB.mensaje}"/>
+            </h:form>
+        </div>
+        <div id="pie">
+            Página diseñada y creada por: Sebastián Felipe Landínez- Diana Marcela Samboní
+        </div>
+    </body>
+</html>
