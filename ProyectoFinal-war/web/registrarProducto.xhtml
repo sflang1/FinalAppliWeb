@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </h:head>
+    <body>
+        <div id="cabecera">
+            Bienvenid@, <h:outputText value="#{usuarioMB.sesionUsuario.name1} 
+                                      #{usuarioMB.sesionUsuario.name2} 
+                                      #{usuarioMB.sesionUsuario.lastname1} 
+                                      #{usuarioMB.sesionUsuario.lastname2}"/>
+            <div id="sesion">
+                <h:form>
+                    ¿No eres tú? Inicia sesión con otra cuenta: <h:commandLink action="#{usuarioMB.logout()}">Cerrar sesión</h:commandLink>
+                </h:form>
+            </div>
+        </div>
+        <div id="menu">
+            <h:form>
+                <table>
+                    <tr>
+                        <td>
+                            <h:commandLink action="#{productoMB.iuRegistrarProducto()}">Registrar Productos</h:commandLink>
+                            <h:commandLink action="#{productoMB.listarProductosActivos()}">Ver Productos Activos</h:commandLink>
+                            <h:commandLink action="#{productoMB.listarProductosInactivos()}">Ver Productos Inactivos</h:commandLink>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </div>
+        <div id="contenido">
+            Ingresa los siguientes datos para registrar un nuevo producto. Los campos con * son obligatorios:
+            <h:form>
+                <table>
+                    <tr>
+                        <td>
+                            Nombre(*):
+                        </td>
+                        <td>
+                            <p:inputText id="name" value="#{productoMB.producto.name}" required="true"
+                                         requiredMessage="Campo obligatorio"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Descripción:
+                        </td>
+                        <td>
+                            <p:inputText value="#{productoMB.producto.description}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Código(*):
+                        </td>
+                        <td>
+                            <p:inputText id="code" value="#{productoMB.producto.productcode}" required="true"
+                                         requiredMessage="Campo obligatorio"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Precio(*):
+                        </td>
+                        <td>
+                            <p:inputText id="price" value="#{productoMB.producto.price}" required="true"
+                                         requiredMessage="Campo obligatorio"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Cantidad(*):
+                        </td>
+                        <td>
+                            <p:inputText id="amount" value="#{productoMB.producto.amount}" required="true"
+                                         requiredMessage="Campo obligatorio"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <p:commandButton value="Registrar Producto" action="#{productoMB.registrarProducto()}" ajax="false" validateClient="true" icon="ui-icon-check"/>
+                        </td>
+                    </tr>
+                </table>
+                <h2><h:outputText value="#{productoMB.mensaje}"/></h2>
+            </h:form>
+        </div>
+    </body>
+</html>

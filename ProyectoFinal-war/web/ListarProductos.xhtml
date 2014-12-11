@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width"/>
+    </head>
+    <body>
+          <div id="cabecera">
+            Bienvenid@, <h:outputText value="#{usuarioMB.sesionUsuario.name1} 
+                                      #{usuarioMB.sesionUsuario.name2} 
+                                      #{usuarioMB.sesionUsuario.lastname1} 
+                                      #{usuarioMB.sesionUsuario.lastname2}"/>
+            <div id="sesion">
+                <h:form>
+                    ¿No eres tú? Inicia sesión con otra cuenta: <h:commandLink action="#{usuarioMB.logout()}">Cerrar sesión</h:commandLink>
+                </h:form>
+            </div>
+        </div>
+        <div id="menu">
+            <h:form>
+                <table>
+                    <tr>
+                        <td>
+                            <h:commandLink action="#{productoMB.iuRegistrarProducto()}">Registrar Productos</h:commandLink>
+                            <h:commandLink action="#{productoMB.listarProductosActivos()}">Ver Productos Activos</h:commandLink>
+                            <h:commandLink action="#{productoMB.listarProductosInactivos()}">Ver Productos Inactivos</h:commandLink>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </div>
+        <div id="contenido">
+            <h2>Lista de Productos</h2>
+            <p:dataTable paginator="true" value="#{productoMB.productos}" var="pro" binding="#{productoMB.dataTablePro}">
+                <p:column>
+                    <f:facet name="header">
+                        Código
+                    </f:facet>
+                    <h:outputText value="#{pro.productcode}"/>
+               </p:column>
+                 <p:column>
+                    <f:facet name="header">
+                        Nombre
+                    </f:facet>
+                     <h:outputText value="#{pro.name}"/>
+               </p:column>
+                 <p:column>
+                    <f:facet name="header">
+                        Cantidad
+                    </f:facet>
+                     <h:outputText value="#{pro.amount}"/>
+               </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Modificar
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink action="#{productoMB.iuModificarProductos()}">Modificar</h:commandLink>
+                    </h:form>
+               </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Inhabilitar
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink action="#{productoMB.iuInhabilitarProducto()}" disabled="#{productoMB.stock}"  >Inhabilitar</h:commandLink>
+                    </h:form>
+               </p:column>
+            </p:dataTable>
+            <h2><h:outputText value="#{productoMB.mensaje}"/></h2>
+            <h:form><h:commandLink action="#{usuarioMB.mostrarInicioEmpleado()}">Volver a la página anterior</h:commandLink></h:form>
+        </div>
+        
+        <div id="pie">
+            Página diseñada y creada por: Sebastián Felipe Landínez- Diana Marcela Samboní
+        </div>
+    </body>
+</html>

@@ -128,6 +128,10 @@ public class UsuarioMB {
     {
         return "inicio.xhtml";
     }
+    public String mostrarInicioEmpleado()
+    {
+        return "inicioEmpleado.xhtml";
+    }
     public String mostrarAgregarUsuario()
     {
         mensaje="";
