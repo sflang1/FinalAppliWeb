@@ -1,0 +1,147 @@
+
+#cabecera
+{
+    width: all;
+    background-color: azure;
+    opacity: 0.7;
+    border: 2px solid darkgray;
+    border-radius: 15px;
+    height: 150px;
+}
+#logo
+{
+    float: left;
+    margin-left: 50px;
+    margin-top: 20px;
+    width: auto;
+    height: 110px;
+    opacity: 1;
+}
+#aerolinea
+{
+    font-size: 60px;
+    margin-left: 50px;
+    float: left;
+    color: cadetblue;
+}
+body
+{
+    background-color: blue;
+    background-image: url("fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: auto auto;
+}
+#iniciosesion
+{
+    background-color: azure;
+    opacity: 0.7;
+    width: 290px;
+    height: 200px;
+    margin-left: 500px;
+    margin-top: 100px;
+    border-radius: 10px;
+    
+}
+#datos
+{
+    padding-left: 30px;
+    padding-top: 50px;
+}
+#cerrarsesion
+{
+    float: right;
+    margin-right: 25px;
+    margin-top: 5px;
+}
+#cerrarsesion a
+{
+    font-size: 20px;
+    color: slategray;
+}
+#pestanas
+{
+    float: left;
+    margin-left: 5px;
+   
+}
+#pestanas tr, th
+{
+    width: 100px;
+    height: 30px;
+    border: 1px solid darkgray;
+    border-radius: 7px;
+    background-color: azure;
+    opacity: 0.7;
+    padding: 5px 20px 5px 20px;
+}
+#pestanas tr th a
+{
+    font-size: 20px;
+    color: slategray;
+    opacity: 1;
+}
+#flecha
+{
+    height: 20px;
+    width: auto;
+}
+a:link 
+{
+    text-decoration: none;
+}
+footer
+{
+    position: absolute; 
+    text-align: center; 
+    width: 99%;background-color: azure;
+    opacity: 0.7;
+    border: 2px solid darkgray;
+    border-radius: 15px;
+    height: 100px;    
+    margin-top: 700px;
+    margin-bottom: 20px;
+}
+footer p
+{
+    font-size: 18.5px;
+    color: #333333;    
+}
+#contenido
+{
+    float: left;
+    margin-top: 30px;
+    margin-left: 150px;
+    margin-bottom: 30px;
+}
+td
+{
+    width: 100px;
+    height: 30px;
+    border: 1px solid darkgray;
+    border-radius: 7px;
+    background-color: azure;
+    opacity: 0.7;
+    padding: 5px 20px 5px 20px;
+}
+
+#contenido a
+{
+    font-size: 20px;
+    color: slategray;
+    padding-left: 15px;
+    text-align: center;
+}
+#ingresar
+{
+    float: right;
+    margin-right: 150px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    border: 1px solid darkgray;
+    border-radius: 7px;
+    background-color: azure;
+    opacity: 0.7;
+    padding: 30px 30px 30px 30px;
+    font-size: 20px;
+    color: slategray;
+}

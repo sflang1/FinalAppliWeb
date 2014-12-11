@@ -13,13 +13,14 @@ and open the template in the editor.
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width"/>
+       <link href="estilo.css" type="text/css" rel="stylesheet" />
     </h:head>
     <body>
         <div id="cabecera">
             Bienvenid@, <h:outputText value="#{usuarioMB.sesionUsuario.name1} 
                                       #{usuarioMB.sesionUsuario.name2} 
                                       #{usuarioMB.sesionUsuario.lastname1} 
-                                      #{usuarioMB.sesionUsuario.lastname2}"/>
+                                      #{usuarioMB.sesionUsuario.lastname2}" />
             <div id="sesion">
                 <h:form>
                     ¿No eres tú? Inicia sesión con otra cuenta: <h:commandLink action="#{usuarioMB.logout()}">Cerrar sesión</h:commandLink>
